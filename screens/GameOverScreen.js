@@ -1,7 +1,11 @@
-import { View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export default function GameOverScreen() {
-  return <View>GameOver Screen</View>;
+  return (
+    <View>
+      <Text>GameOver Screen</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({});
