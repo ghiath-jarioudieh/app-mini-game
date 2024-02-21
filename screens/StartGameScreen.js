@@ -1,7 +1,15 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
+
+import PrimaryButton from "../components/PrimaryButton";
 
 export default function StartGameScreen() {
-  return <View>Start Game Screen</View>;
+  return (
+    <View>
+      <TextInput />
+      <PrimaryButton>Reset</PrimaryButton>
+      <PrimaryButton>Confirm</PrimaryButton>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({});
