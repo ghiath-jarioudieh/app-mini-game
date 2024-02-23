@@ -1,5 +1,4 @@
-import { View, StyleSheet, TextInput, Keyboard } from "react-native";
-import { TouchableWithoutFeedback } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
 
 import PrimaryButton from "../components/PrimaryButton";
 
@@ -12,14 +11,21 @@ export default function StartGameScreen() {
         keyboardType="decimal-pad"
       />
 
-      <PrimaryButton>Reset</PrimaryButton>
-      <PrimaryButton>Confirm</PrimaryButton>
+      <View style={styles.buttons}>
+        <View style={styles.button}>
+          <PrimaryButton>Reset</PrimaryButton>
+        </View>
+        <View style={styles.button}>
+          <PrimaryButton>Confirm</PrimaryButton>
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     marginHorizontal: 24,
     borderRadius: 8,
     padding: 16,
@@ -45,5 +51,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     width: 50,
     textAlign: "center",
+  },
+  buttons: {
+    flexDirection: "row",
+  },
+  button: {
+    flex: 1,
   },
 });
