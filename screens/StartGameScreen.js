@@ -25,7 +25,7 @@ export default function StartGameScreen({ onPickNumber }) {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.screen}>
       <TextInput
         style={styles.input}
         maxLength={2}
@@ -47,7 +47,7 @@ export default function StartGameScreen({ onPickNumber }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     alignItems: "center",
     marginHorizontal: 24,
     borderRadius: 8,
