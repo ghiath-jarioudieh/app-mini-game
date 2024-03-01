@@ -1,7 +1,8 @@
-import { View, StyleSheet, TextInput, Alert } from "react-native";
+import { View, StyleSheet, TextInput, Alert, Text } from "react-native";
 import { useState } from "react";
 
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Title from "../components/ui/Title";
 import Colors from "../constants/colors";
 
 export default function StartGameScreen({ onPickNumber }) {
@@ -27,20 +28,25 @@ export default function StartGameScreen({ onPickNumber }) {
 
   return (
     <View style={styles.screen}>
-      <TextInput
-        style={styles.input}
-        maxLength={2}
-        keyboardType="decimal-pad"
-        value={enteredNumber}
-        onChangeText={enterNumberHandler}
-      />
+      <Title style={styles.title}>Guess My Number</Title>
 
-      <View style={styles.buttons}>
-        <View style={styles.button}>
-          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
-        </View>
-        <View style={styles.button}>
-          <PrimaryButton onPress={confimInputHandler}>Confirm</PrimaryButton>
+      <View style={styles.inputContainer}>
+        <Text style={styles.text}>Enter a Number</Text>
+        <TextInput
+          style={styles.input}
+          maxLength={2}
+          keyboardType="decimal-pad"
+          value={enteredNumber}
+          onChangeText={enterNumberHandler}
+        />
+
+        <View style={styles.buttons}>
+          <View style={styles.button}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={styles.button}>
+            <PrimaryButton onPress={confimInputHandler}>Confirm</PrimaryButton>
+          </View>
         </View>
       </View>
     </View>
@@ -49,12 +55,18 @@ export default function StartGameScreen({ onPickNumber }) {
 
 const styles = StyleSheet.create({
   screen: {
-    alignItems: "center",
-    marginHorizontal: 24,
-    borderRadius: 8,
-    padding: 16,
+    flex: 1,
     marginTop: 100,
+    alignItems: "center",
+  },
+  inputContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 24,
+    padding: 16,
     backgroundColor: Colors.primary800,
+    borderRadius: 8,
+    marginTop: 24,
     elevation: 4,
     shadowColor: "black",
     shadowOffset: {
@@ -66,6 +78,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
+    width: 50,
     borderBottomWidth: 2,
     borderBottomColor: Colors.accent500,
     color: Colors.accent500,
@@ -73,8 +86,14 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginTop: 8,
     fontWeight: "bold",
-    width: 50,
     textAlign: "center",
+  },
+  title: {
+    marginTop: 100,
+  },
+  text: {
+    color: Colors.accent500,
+    fontSize: 24,
   },
   buttons: {
     flexDirection: "row",
