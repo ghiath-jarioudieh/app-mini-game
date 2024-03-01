@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
-import Title from "../components/ui/Title";
 import { useEffect, useState } from "react";
+import { View, StyleSheet, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+
 import NumberContainer from "../components/game/NumberContainer";
+import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Card from "../components/ui/Card";
 import PrimaryText from "../components/ui/PrimaryText";
@@ -63,12 +65,12 @@ export default function GameScreen({ userNumber, onGameOver }) {
         <View style={styles.buttons}>
           <View style={styles.button}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-              -
+              <Ionicons name="remove" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.button}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, "greater")}>
-              +
+              <Ionicons name="add" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
