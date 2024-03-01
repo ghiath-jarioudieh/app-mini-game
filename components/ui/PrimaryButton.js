@@ -3,7 +3,7 @@ import Colors from "../../constants/colors";
 
 export default function PrimaryButton({ children, onPress }) {
   return (
-    <View style={styles.container}>
+    <View style={styles.primaryButton}>
       <Pressable
         onPress={onPress}
         android_ripple={{ color: Colors.primary600 }}
@@ -18,7 +18,7 @@ export default function PrimaryButton({ children, onPress }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  primaryButton: {
     borderRadius: 28,
     overflow: "hidden",
     margin: 4,
