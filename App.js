@@ -1,16 +1,27 @@
+import { useState } from "react";
+import { useFonts } from "expo-font";
 import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import AppLoading from "expo-app-loading";
 
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
-
-import { useState } from "react";
 import Colors from "./constants/colors";
 
 export default function App() {
   const [userNumber, setEnterNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
+
+  const [fontLoaded] = useFonts({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+    "madimi-one": require("./assets/fonts/MadimiOne.ttf"),
+  });
+
+  if (!fontLoaded) {
+    return <AppLoading />;
+  }
 
   function pickedNumberHandler(enteredNumber) {
     setEnterNumber(enteredNumber);
