@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import NumberContainer from "../components/game/NumberContainer";
+import GuessLogItem from "../components/game/GuessLogItem";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Card from "../components/ui/Card";
@@ -24,12 +25,18 @@ let maxBoundary = 100;
 export default function GameScreen({ userNumber, onGameOver }) {
   const initialGuess = createRandomNumber(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [guessRounds, setGuessRounds] = useState([]);
 
   useEffect(() => {
     if (currentGuess === userNumber) {
       onGameOver();
     }
   }, [currentGuess, userNumber, onGameOver]);
+
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []);
 
   function nextGuessHandler(direction) {
     if (
@@ -53,14 +60,16 @@ export default function GameScreen({ userNumber, onGameOver }) {
       currentGuess
     );
     setCurrentGuess(newRandomNumber);
+    setGuessRounds((currentGuess) => [...currentGuess, newRandomNumber]);
   }
 
+  const guessRoundsListLength = guessRounds.length;
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
 
-      <Card>
+      <Card style={styles.card}>
         <PrimaryText style={styles.text}>Higher or lower?</PrimaryText>
         <View style={styles.buttons}>
           <View style={styles.button}>
@@ -75,6 +84,16 @@ export default function GameScreen({ userNumber, onGameOver }) {
           </View>
         </View>
       </Card>
+      <FlatList
+        data={guessRounds}
+        renderItem={(itemData) => (
+          <GuessLogItem
+            guess={itemData.item}
+            roundNumber={guessRoundsListLength - itemData.index}
+          />
+        )}
+        keyExtractor={(item) => item}
+      />
     </View>
   );
 }
@@ -92,5 +111,8 @@ const styles = StyleSheet.create({
   },
   text: {
     marginBottom: 16,
+  },
+  card: {
+    marginBottom: 24,
   },
 });
